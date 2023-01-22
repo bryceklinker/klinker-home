@@ -1,29 +1,21 @@
-using Duende.IdentityServer.EntityFramework.DbContexts;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Klinker.Home.Identity.Web.Tests.Support;
 
-public class IdentityWebApplicationFixture : WebApplicationFactory<Program>
+public class IdentityWebApplicationFixture
 {
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
-    {
-        var identityDatabase = $"{Guid.NewGuid()}";
-        builder.ConfigureServices(services =>
-        {
-            services.Remove<DbContextOptions<PersistedGrantDbContext>>()
-                .Remove<DbContextOptions<ConfigurationDbContext>>();
+    public IdentityWebApplication App { get; private set; }
+    public HttpClient Client { get; private set; }
 
-            services.AddDbContext<PersistedGrantDbContext>(opts =>
-            {
-                opts.UseInMemoryDatabase(identityDatabase);
-            });
-            services.AddDbContext<ConfigurationDbContext>(opts =>
-            {
-                opts.UseInMemoryDatabase(identityDatabase);
-            });
-        });
+    [OneTimeSetUp]
+    public Task OneTimeSetup()
+    {
+        App = new IdentityWebApplication();
+        Client = App.CreateClient();
+        return Task.CompletedTask;
+    }
+
+    [OneTimeTearDown]
+    public async Task OneTimeTearDown()
+    {
+        await App.DisposeAsync();
     }
 }
