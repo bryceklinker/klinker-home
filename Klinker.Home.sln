@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{A6D890D8-EEFE-4107-976D-24E00F630703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klinker.Home.Identity.Web", "identity\Klinker.Home.Identity.Web\Klinker.Home.Identity.Web.csproj", "{5D4F680E-05CC-4BFF-B618-C3A083043B39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klinker.Home.Identity.Web.Tests", "identity\Klinker.Home.Identity.Web.Tests\Klinker.Home.Identity.Web.Tests.csproj", "{CBC58ECC-E74A-423D-B093-676FAFA099FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7D4AEA75-F16A-4E64-B9B5-021F79CB4BDC}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".scm", ".scm", "{2AF9E179-08FE-4E02-9CED-5624C4520F55}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D4F680E-05CC-4BFF-B618-C3A083043B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D4F680E-05CC-4BFF-B618-C3A083043B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4F680E-05CC-4BFF-B618-C3A083043B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D4F680E-05CC-4BFF-B618-C3A083043B39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBC58ECC-E74A-423D-B093-676FAFA099FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC58ECC-E74A-423D-B093-676FAFA099FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC58ECC-E74A-423D-B093-676FAFA099FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC58ECC-E74A-423D-B093-676FAFA099FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D4F680E-05CC-4BFF-B618-C3A083043B39} = {A6D890D8-EEFE-4107-976D-24E00F630703}
+		{CBC58ECC-E74A-423D-B093-676FAFA099FC} = {A6D890D8-EEFE-4107-976D-24E00F630703}
+	EndGlobalSection
+EndGlobal
