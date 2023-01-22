@@ -1,0 +1,14 @@
+@page
+@model Klinker.Home.Identity.Web.Pages.Setup
+
+@{
+    ViewData["Title"] = "Initial Setup";
+}
+
+<form method="post">
+    <label asp-for="ViewModel.Username">Enter Username: </label>
+    <input type="text" asp-for="ViewModel.Username"/>
+    <label asp-for="ViewModel.Password">Enter Password: </label>
+    <input type="password" asp-for="ViewModel.Password"/>
+    <button type="submit">Submit</button>
+</form>

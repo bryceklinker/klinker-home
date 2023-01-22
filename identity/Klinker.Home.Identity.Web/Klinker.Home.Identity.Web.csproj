@@ -6,9 +6,17 @@
 
   <ItemGroup>
     <PackageReference Include="Duende.IdentityServer" Version="6.2.1" />
+    <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="6.2.1" />
     <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="6.2.1" />
     <PackageReference Include="Duende.IdentityServer.EntityFramework.Storage" Version="6.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
   </ItemGroup>
+  
+  <Target Name="Tailwind" BeforeTargets="Build">
+    <Exec Command="yarn install" />
+    <Exec Command="yarn build" />
+  </Target>
 </Project>

@@ -1,5 +1,16 @@
+# JetBrains
 .idea/
+
+# .NET Output
 bin/
 obj/
 TestResults/
+
+# User Files
 **/*.user
+
+# Node
+node_modules/
+
+# Generated
+**/*.min.*
