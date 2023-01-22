@@ -1,3 +1,7 @@
+using Klinker.Home.Identity.Web.Common.Storage;
+using Klinker.Home.Identity.Web.Users.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 
@@ -15,12 +19,26 @@ public class IdentityWebApplicationFixture : PageTest
         return await Page.GotoAsync($"{BaseAddress}{path}");
     }
 
+    public KlinkerIdentityDbContext GetIdentityContext()
+    {
+        return App.GetService<KlinkerIdentityDbContext>();
+    }
+
     [OneTimeSetUp]
     public Task OneTimeSetup()
     {
         App = new IdentityWebApplication();
         Client = App.CreateClient();
         return Task.CompletedTask;
+    }
+
+    [SetUp]
+    public async Task Setup()
+    {
+        var userManager = App.GetService<UserManager<KlinkerUser>>();
+        var users = await userManager.Users.ToArrayAsync();
+        foreach (var user in users)
+            await userManager.DeleteAsync(user);
     }
 
     [OneTimeTearDown]

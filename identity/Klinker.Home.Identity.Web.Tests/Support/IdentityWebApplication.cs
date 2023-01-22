@@ -24,6 +24,12 @@ public class IdentityWebApplication : WebApplicationFactory<Program>
         }
     }
 
+    public T GetService<T>()
+        where T : notnull
+    {
+        return Services.GetRequiredService<T>();
+    }
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         var identityDatabase = $"{Guid.NewGuid()}";
