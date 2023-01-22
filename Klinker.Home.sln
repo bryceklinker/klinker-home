@@ -12,11 +12,29 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7D4AEA75-F16A-4E64-B9B5-021F79CB4BDC}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
+		.csharpierrc.json = .csharpierrc.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".scm", ".scm", "{2AF9E179-08FE-4E02-9CED-5624C4520F55}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2997B56E-065F-45C6-A1CB-C7CC963B9228}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{57908557-DB34-41E5-96FF-102752E54CFC}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yaml = .github\workflows\ci.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{CB0841BF-9A01-4859-A916-0DFBDCCD36F5}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".husky", ".husky", "{328C3054-1D7A-4F36-B458-93F8FC67D7E5}"
+	ProjectSection(SolutionItems) = preProject
+		.husky\task-runner.json = .husky\task-runner.json
 	EndProjectSection
 EndProject
 Global
@@ -40,5 +58,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5D4F680E-05CC-4BFF-B618-C3A083043B39} = {A6D890D8-EEFE-4107-976D-24E00F630703}
 		{CBC58ECC-E74A-423D-B093-676FAFA099FC} = {A6D890D8-EEFE-4107-976D-24E00F630703}
+		{57908557-DB34-41E5-96FF-102752E54CFC} = {2997B56E-065F-45C6-A1CB-C7CC963B9228}
 	EndGlobalSection
 EndGlobal
