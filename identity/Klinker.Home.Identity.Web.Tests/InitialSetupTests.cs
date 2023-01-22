@@ -16,6 +16,8 @@ public class InitialUserSetup : IdentityWebApplicationFixture
 
         var users = await GetIdentityContext().Users.ToArrayAsync();
         users.Should().HaveCount(1);
+        users[0].UserName.Should().Be(TestAdminUser.Default.Username);
+        users[0].EmailConfirmed.Should().Be(true);
     }
 
     [Test]

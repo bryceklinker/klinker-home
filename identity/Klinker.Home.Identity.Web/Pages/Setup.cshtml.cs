@@ -10,7 +10,7 @@ public record SetupViewModel(string Username = "", string Password = "")
 {
     public KlinkerUser ToUser()
     {
-        return new KlinkerUser { UserName = Username, };
+        return new KlinkerUser { UserName = Username, EmailConfirmed = true };
     }
 }
 
