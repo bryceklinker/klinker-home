@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -28,7 +27,8 @@ public class IdentityWebApplication : WebApplicationFactory<Program>
     public T GetService<T>()
         where T : notnull
     {
-        return Services.GetRequiredService<T>();
+        var scope = Services.CreateScope();
+        return scope.ServiceProvider.GetRequiredService<T>();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
