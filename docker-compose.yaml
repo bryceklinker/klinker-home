@@ -3,8 +3,8 @@ services:
   database:
     image: postgres:15.1-alpine
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     ports:
       - "5432:5432"
   
@@ -14,5 +14,7 @@ services:
       dockerfile: identity/Klinker.Home.Identity.Web/Dockerfile
     ports:
       - "5166:80"
+    environment:
+      ConnectionStrings__Identity: "Server=database;Port=5432;Database=identity;User Id=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}"
     depends_on:
       - database

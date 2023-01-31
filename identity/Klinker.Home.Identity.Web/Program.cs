@@ -3,11 +3,9 @@ using Klinker.Home.Identity.Web.Common;
 var builder = WebApplication.CreateBuilder(args);
 builder.AddKlinkerIdentityWeb(builder.Configuration);
 
-var app = builder.Build()
-    .UseKlinkerHomeIdentityWeb();
+var app = builder.Build().UseKlinkerHomeIdentityWeb();
 
-app.Run();
+await app.RunMigrationsAsync();
+await app.RunAsync();
 
-public partial class Program
-{
-}
+public partial class Program { }
