@@ -8,6 +8,7 @@ public static class ServiceScopeExtensions
         where T : DbContext
     {
         await using var context = scope.ServiceProvider.GetRequiredService<T>();
-        await context.Database.MigrateAsync();
+        if (context.Database.IsRelational())
+            await context.Database.MigrateAsync();
     }
 }

@@ -9,8 +9,6 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddKlinkerHomeIdentityWeb(this IServiceCollection services, IConfiguration config)
     {
         var connectionString = config.GetConnectionString("Identity");
-        if (string.IsNullOrEmpty(connectionString))
-            throw new InvalidOperationException("Missing 'Identity' connection string");
 
         services.AddRazorPages();
         services.AddDbContext<KlinkerIdentityDbContext>(opts =>
@@ -34,7 +32,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    private static void UseDatabase(this DbContextOptionsBuilder builder, string connectionString)
+    private static void UseDatabase(this DbContextOptionsBuilder builder, string? connectionString)
     {
         builder.UseNpgsql(
             connectionString,
