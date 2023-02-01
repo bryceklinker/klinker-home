@@ -1,3 +1,4 @@
+using Klinker.Home.Identity.Web.Common;
 using Klinker.Home.Identity.Web.Users.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -28,8 +29,7 @@ public class Setup : PageModel
 
     public async Task<IActionResult> OnGetAsync()
     {
-        var hasUser = await _userManager.Users.AnyAsync();
-        return hasUser ? RedirectToPage("./Login") : Page();
+        return await _userManager.DoAnyUsersExistAsync() ? RedirectToPage("./Login") : Page();
     }
 
     public async Task<IActionResult> OnPostAsync()

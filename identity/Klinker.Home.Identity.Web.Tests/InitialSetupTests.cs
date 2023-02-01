@@ -21,6 +21,14 @@ public class InitialUserSetup : IdentityWebApplicationFixture
     }
 
     [Test]
+    public async Task WhenAdminUserMissingThenHomePageRedirectsToSetupPage()
+    {
+        var response = await NavigateToAsync("/");
+
+        response!.Url.Should().EndWithEquivalentOf("/setup");
+    }
+
+    [Test]
     public async Task WhenAdminAlreadyExistsThenSetupRedirectsToLoginPage()
     {
         await NavigateToAsync("/setup");
