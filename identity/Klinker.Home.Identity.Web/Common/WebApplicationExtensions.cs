@@ -1,5 +1,6 @@
 using Duende.IdentityServer.EntityFramework.DbContexts;
 using Klinker.Home.Identity.Web.Common.Storage;
+using Serilog;
 
 namespace Klinker.Home.Identity.Web.Common;
 
@@ -7,6 +8,7 @@ public static class WebApplicationExtensions
 {
     public static WebApplication UseKlinkerHomeIdentityWeb(this WebApplication app)
     {
+        app.UseSerilogRequestLogging();
         app.UseIdentityServer();
         app.UseStaticFiles();
         app.UseRouting();

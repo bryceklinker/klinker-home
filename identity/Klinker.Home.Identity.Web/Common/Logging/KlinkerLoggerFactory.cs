@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Immutable;
 using Serilog;
+using Serilog.Formatting.Compact;
 using ILogger = Serilog.ILogger;
 
 namespace Klinker.Home.Identity.Web.Common.Logging;
@@ -39,7 +40,10 @@ public static class KlinkerLoggerFactory
 {
     public static LoggerConfiguration CreateConfig(LoggerSettings settings)
     {
-        var config = new LoggerConfiguration().Enrich.FromLogContext().MinimumLevel.Information().WriteTo.Console();
+        var config = new LoggerConfiguration().Enrich
+            .FromLogContext()
+            .MinimumLevel.Information()
+            .WriteTo.Console(new RenderedCompactJsonFormatter());
 
         foreach (var (key, value) in settings)
             config.Enrich.WithProperty(key, value);
