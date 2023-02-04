@@ -35,15 +35,47 @@ public class IdentityWebApplicationFixture : PageTest
     [SetUp]
     public async Task Setup()
     {
-        var userManager = App.GetService<UserManager<KlinkerUser>>();
-        var users = await userManager.Users.ToArrayAsync();
-        foreach (var user in users)
-            await userManager.DeleteAsync(user);
+        await Cleanup();
+        await BeforeEach();
+    }
+
+    [TearDown]
+    public async Task Teardown()
+    {
+        await Cleanup();
+        await AfterEach();
     }
 
     [OneTimeTearDown]
     public async Task OneTimeTearDown()
     {
         await App.DisposeAsync();
+    }
+
+    public virtual Task BeforeEach()
+    {
+        return Task.CompletedTask;
+    }
+
+    public virtual Task AfterEach()
+    {
+        return Task.CompletedTask;
+    }
+
+    private async Task Cleanup()
+    {
+        var userManager = App.GetService<UserManager<KlinkerUser>>();
+        var users = await userManager.Users.ToArrayAsync();
+        foreach (var user in users)
+            await userManager.DeleteAsync(user);
+    }
+
+    protected async Task AddAdminUser()
+    {
+        var userManager = App.GetService<UserManager<KlinkerUser>>();
+        await userManager.CreateAsync(
+            new KlinkerUser { UserName = TestAdminUser.Default.Username, EmailConfirmed = true },
+            TestAdminUser.Default.Password
+        );
     }
 }

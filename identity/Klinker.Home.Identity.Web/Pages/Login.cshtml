@@ -1,2 +1,15 @@
 @page
 @model Klinker.Home.Identity.Web.Pages.Login
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <label asp-for="ViewModel.Username">Username</label>
+    <input type="text" asp-for="ViewModel.Username" />
+    
+    <label asp-for="ViewModel.Password">Password</label>
+    <input type="password" asp-for="ViewModel.Password"/>
+    
+    <label asp-for="ViewModel.StaySignedIn">Stay Signed In?</label>
+    <input type="checkbox" asp-for="ViewModel.StaySignedIn"/>
+    <button type="submit">Login</button>
+</form>
