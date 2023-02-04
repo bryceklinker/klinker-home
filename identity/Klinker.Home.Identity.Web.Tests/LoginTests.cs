@@ -23,6 +23,21 @@ public class LoginTests : IdentityWebApplicationFixture
             await Page.GetByRole(AriaRole.Button).ClickAsync();
         });
 
-        response!.Url.Should().EndWith("/Dashboard");
+        response!.Url.Should().EndWith("/dashboard");
+    }
+
+    [Test]
+    public async Task WhenAdminFailsToLoginThenLoginPageIsDisplayed()
+    {
+        await NavigateToAsync("/login");
+
+        await Page.GetByRole(AriaRole.Textbox, "Username").TypeAsync("bad");
+        await Page.GetByRole(AriaRole.Textbox, "Password").TypeAsync("bad");
+        var response = await Page.RunAndWaitForNavigationAsync(async () =>
+        {
+            await Page.GetByRole(AriaRole.Button).ClickAsync();
+        });
+
+        response!.Url.Should().EndWith("/login");
     }
 }

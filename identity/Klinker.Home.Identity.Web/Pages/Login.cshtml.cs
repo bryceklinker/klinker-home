@@ -23,7 +23,17 @@ public class Login : PageModel
 
     public async Task<IActionResult> OnPost()
     {
-        await _signInManager.PasswordSignInAsync(ViewModel.Username, ViewModel.Password, ViewModel.StaySignedIn, false);
-        return RedirectToPage("./Dashboard");
+        var result = await _signInManager.PasswordSignInAsync(
+            ViewModel.Username,
+            ViewModel.Password,
+            ViewModel.StaySignedIn,
+            false
+        );
+        if (result.Succeeded)
+        {
+            return RedirectToPage("./Dashboard");
+        }
+
+        return Page();
     }
 }

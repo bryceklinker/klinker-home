@@ -10,6 +10,7 @@ public static class ServiceCollectionExtensions
     {
         var connectionString = config.GetConnectionString("Identity");
 
+        services.AddRouting(opts => opts.LowercaseUrls = true);
         services.AddRazorPages();
         services.AddDbContext<KlinkerIdentityDbContext>(opts =>
         {
