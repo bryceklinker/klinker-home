@@ -13,5 +13,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Klinker.Home.Identity.Web\Klinker.Home.Identity.Web.csproj" />
   </ItemGroup>
+  
+  <Target Name="Install_Playwright" AfterTargets="Build">
+    <Exec Command="pwsh 'bin/$(Configuration)/net7.0/playwright.ps1' install" />
+  </Target>
 
 </Project>
