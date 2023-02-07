@@ -1,5 +1,6 @@
 using Klinker.Home.Identity.Web.Common;
 using Klinker.Home.Identity.Web.Users.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,6 +16,7 @@ public record SetupViewModel(string Username = "", string Password = "")
     }
 }
 
+[AllowAnonymous]
 public class Setup : PageModel
 {
     private readonly UserManager<KlinkerUser> _userManager;

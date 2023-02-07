@@ -1,5 +1,6 @@
 using Klinker.Home.Identity.Web.Common.Storage;
 using Klinker.Home.Identity.Web.Users.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Klinker.Home.Identity.Web.Common;
@@ -10,15 +11,12 @@ public static class ServiceCollectionExtensions
     {
         var connectionString = config.GetConnectionString("Identity");
 
-        services.AddRouting(opts => opts.LowercaseUrls = true);
-        services.AddRazorPages();
         services.AddDbContext<KlinkerIdentityDbContext>(opts =>
         {
             opts.UseDatabase(connectionString);
         });
 
         services.AddIdentity<KlinkerUser, KlinkerRole>().AddEntityFrameworkStores<KlinkerIdentityDbContext>();
-
         services
             .AddIdentityServer()
             .AddConfigurationStore(opts =>
@@ -30,6 +28,12 @@ public static class ServiceCollectionExtensions
                 opts.ConfigureDbContext = o => o.UseDatabase(connectionString);
             })
             .AddAspNetIdentity<KlinkerUser>();
+        services.ConfigureApplicationCookie(opts =>
+        {
+            opts.LoginPath = new PathString("/login");
+        });
+        services.AddRouting(opts => opts.LowercaseUrls = true);
+        services.AddRazorPages();
         return services;
     }
 

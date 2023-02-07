@@ -9,10 +9,11 @@ public static class WebApplicationExtensions
     public static WebApplication UseKlinkerHomeIdentityWeb(this WebApplication app)
     {
         app.UseSerilogRequestLogging();
-        app.UseIdentityServer();
         app.UseStaticFiles();
         app.UseRouting();
-        app.MapRazorPages();
+        app.UseIdentityServer();
+        app.UseAuthorization();
+        app.MapRazorPages().RequireAuthorization();
         return app;
     }
 

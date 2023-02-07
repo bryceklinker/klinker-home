@@ -18,12 +18,8 @@ public class LoginTests : IdentityWebApplicationFixture
 
         await Page.GetByRole(AriaRole.Textbox, "Username").TypeAsync(TestAdminUser.Default.Username);
         await Page.GetByRole(AriaRole.Textbox, "Password").TypeAsync(TestAdminUser.Default.Password);
-        var response = await Page.RunAndWaitForNavigationAsync(async () =>
-        {
-            await Page.GetByRole(AriaRole.Button).ClickAsync();
-        });
-
-        response!.Url.Should().EndWith("/dashboard");
+        await Page.GetByRole(AriaRole.Button).ClickAsync();
+        await Page.WaitForURLAsync("/dashboard");
     }
 
     [Test]
