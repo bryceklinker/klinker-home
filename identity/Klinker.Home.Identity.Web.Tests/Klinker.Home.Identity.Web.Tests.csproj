@@ -15,7 +15,7 @@
   </ItemGroup>
   
   <Target Name="Install_Playwright" AfterTargets="Build">
-    <Exec Command="pwsh 'bin/$(Configuration)/net7.0/playwright.ps1' install" />
+    <Exec Command="pwsh 'bin/$(Configuration)/net7.0/playwright.ps1' install --with-deps" />
   </Target>
 
 </Project>

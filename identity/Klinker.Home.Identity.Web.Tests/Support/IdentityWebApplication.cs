@@ -78,9 +78,15 @@ public class IdentityWebApplication : WebApplicationFactory<Program>
         }
     }
 
-    public override ValueTask DisposeAsync()
+    public override async ValueTask DisposeAsync()
     {
-        _host?.Dispose();
-        return base.DisposeAsync();
+        if (_host != null)
+        {
+            await _host.StopAsync();
+            await _host.WaitForShutdownAsync();
+            _host?.Dispose();
+        }
+
+        await base.DisposeAsync();
     }
 }

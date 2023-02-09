@@ -14,6 +14,11 @@ public class IdentityWebApplicationFixture : PageTest
 
     public string BaseAddress => App.BaseAddress.Substring(0, App.BaseAddress.Length - 1);
 
+    public override BrowserNewContextOptions ContextOptions()
+    {
+        return new BrowserNewContextOptions { BaseURL = BaseAddress, BypassCSP = true };
+    }
+
     public async Task<IResponse?> NavigateToAsync(string path)
     {
         return await Page.GotoAsync($"{BaseAddress}{path}");
@@ -72,10 +77,9 @@ public class IdentityWebApplicationFixture : PageTest
 
     protected async Task AddAdminUser()
     {
-        var userManager = App.GetService<UserManager<KlinkerUser>>();
-        await userManager.CreateAsync(
-            new KlinkerUser { UserName = TestAdminUser.Default.Username, EmailConfirmed = true },
-            TestAdminUser.Default.Password
-        );
+        await NavigateToAsync("/setup");
+        await Page.GetByLabel("Username").FillAsync(TestAdminUser.Default.Username);
+        await Page.GetByLabel("Password").FillAsync(TestAdminUser.Default.Password);
+        await Page.GetByRole(AriaRole.Button).ClickAsync();
     }
 }

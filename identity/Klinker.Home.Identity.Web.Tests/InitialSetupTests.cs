@@ -4,6 +4,7 @@ using Microsoft.Playwright;
 
 namespace Klinker.Home.Identity.Web.Tests;
 
+[Parallelizable(ParallelScope.Self)]
 [TestFixture]
 public class InitialUserSetup : IdentityWebApplicationFixture
 {

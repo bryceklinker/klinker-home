@@ -4,22 +4,21 @@ using Microsoft.Playwright;
 
 namespace Klinker.Home.Identity.Web.Tests;
 
+[Parallelizable(ParallelScope.Self)]
 [TestFixture]
 public class LoginTests : IdentityWebApplicationFixture
 {
-    public override async Task BeforeEach()
-    {
-        await AddAdminUser();
-    }
-
     [Test]
     public async Task WhenAdminLogsInThenDashboardIsDisplayed()
     {
+        await AddAdminUser();
         await NavigateToAsync("/login");
 
         await Page.GetByLabel("Username").FillAsync(TestAdminUser.Default.Username);
         await Page.GetByLabel("Password").FillAsync(TestAdminUser.Default.Password);
         await Page.GetByRole(AriaRole.Button).ClickAsync();
+
+        await Page.WaitForURLAsync("/dashboard");
     }
 
     [Test]

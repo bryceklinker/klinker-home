@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
             .AddIdentity<KlinkerUser, KlinkerRole>()
             .AddEntityFrameworkStores<KlinkerIdentityDbContext>()
             .AddDefaultTokenProviders();
+
         services
             .AddIdentityServer()
             .AddConfigurationStore(opts =>
@@ -33,6 +34,7 @@ public static class ServiceCollectionExtensions
             .AddAspNetIdentity<KlinkerUser>();
         services.ConfigureApplicationCookie(opts =>
         {
+            opts.Cookie.SameSite = SameSiteMode.Lax;
             opts.LoginPath = new PathString("/login");
         });
         services.AddRouting(opts => opts.LowercaseUrls = true);

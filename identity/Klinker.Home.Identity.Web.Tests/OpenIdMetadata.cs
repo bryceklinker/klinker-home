@@ -3,6 +3,7 @@ using Klinker.Home.Identity.Web.Tests.Support;
 
 namespace Klinker.Home.Identity.Web.Tests;
 
+[Parallelizable(ParallelScope.Self)]
 [TestFixture]
 public class OpenIdMetadata : IdentityWebApplicationFixture
 {
