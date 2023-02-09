@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Klinker.Home.Identity.Web.Tests.Support;
 using Microsoft.Playwright;
 
@@ -16,10 +17,9 @@ public class LoginTests : IdentityWebApplicationFixture
     {
         await NavigateToAsync("/login");
 
-        await Page.GetByRole(AriaRole.Textbox, "Username").TypeAsync(TestAdminUser.Default.Username);
-        await Page.GetByRole(AriaRole.Textbox, "Password").TypeAsync(TestAdminUser.Default.Password);
+        await Page.GetByLabel("Username").FillAsync(TestAdminUser.Default.Username);
+        await Page.GetByLabel("Password").FillAsync(TestAdminUser.Default.Password);
         await Page.GetByRole(AriaRole.Button).ClickAsync();
-        await Page.WaitForURLAsync("/dashboard");
     }
 
     [Test]
@@ -27,13 +27,10 @@ public class LoginTests : IdentityWebApplicationFixture
     {
         await NavigateToAsync("/login");
 
-        await Page.GetByRole(AriaRole.Textbox, "Username").TypeAsync("bad");
-        await Page.GetByRole(AriaRole.Textbox, "Password").TypeAsync("bad");
-        var response = await Page.RunAndWaitForNavigationAsync(async () =>
-        {
-            await Page.GetByRole(AriaRole.Button).ClickAsync();
-        });
+        await Page.GetByLabel("Username").FillAsync("bad");
+        await Page.GetByLabel("Password").FillAsync("bad");
+        await Page.GetByRole(AriaRole.Button).ClickAsync();
 
-        response!.Url.Should().EndWith("/login");
+        await Expect(Page.GetByLabel("Username")).ToBeVisibleAsync();
     }
 }

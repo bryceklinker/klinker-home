@@ -41,8 +41,8 @@ public class InitialUserSetup : IdentityWebApplicationFixture
 
     private async Task CreateAdminUser()
     {
-        await Page.GetByRole(AriaRole.Textbox, "Username").TypeAsync(TestAdminUser.Default.Username);
-        await Page.GetByRole(AriaRole.Textbox, "Password").TypeAsync(TestAdminUser.Default.Password);
+        await Page.GetByLabel("Username").FillAsync(TestAdminUser.Default.Username);
+        await Page.GetByLabel("Password").FillAsync(TestAdminUser.Default.Password);
         await Page.GetByRole(AriaRole.Button).ClickAsync();
     }
 }

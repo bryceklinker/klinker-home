@@ -27,7 +27,7 @@ public class IdentityWebApplication : WebApplicationFactory<Program>
     public T GetService<T>()
         where T : notnull
     {
-        var scope = Services.CreateScope();
+        var scope = _host!.Services.CreateScope();
         return scope.ServiceProvider.GetRequiredService<T>();
     }
 

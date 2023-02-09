@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Klinker.Home.Identity.Web.Pages;
 
-public record LoginViewModel(string Username = "", string Password = "", bool StaySignedIn = false);
+public record LoginViewModel(string Username = "", string Password = "");
 
 [AllowAnonymous]
 [ValidateAntiForgeryToken]
@@ -22,21 +22,17 @@ public class Login : PageModel
         _signInManager = signInManager;
     }
 
-    public void OnGet() { }
-
-    public async Task<IActionResult> OnPost()
+    public IActionResult OnGet()
     {
-        var result = await _signInManager.PasswordSignInAsync(
-            ViewModel.Username,
-            ViewModel.Password,
-            ViewModel.StaySignedIn,
-            true
-        );
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        var result = await _signInManager.PasswordSignInAsync(ViewModel.Username, ViewModel.Password, true, true);
 
         if (result.Succeeded)
-        {
             return RedirectToPage("./Dashboard");
-        }
 
         return Page();
     }

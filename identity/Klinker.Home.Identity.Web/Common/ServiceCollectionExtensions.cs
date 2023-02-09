@@ -16,7 +16,10 @@ public static class ServiceCollectionExtensions
             opts.UseDatabase(connectionString);
         });
 
-        services.AddIdentity<KlinkerUser, KlinkerRole>().AddEntityFrameworkStores<KlinkerIdentityDbContext>();
+        services
+            .AddIdentity<KlinkerUser, KlinkerRole>()
+            .AddEntityFrameworkStores<KlinkerIdentityDbContext>()
+            .AddDefaultTokenProviders();
         services
             .AddIdentityServer()
             .AddConfigurationStore(opts =>
