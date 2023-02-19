@@ -19,6 +19,8 @@ public class Index : PageModel
 
     public async Task<IActionResult> OnGet()
     {
-        return await _userManager.DoAnyUsersExistAsync() ? RedirectToPage("./Login") : RedirectToPage("./Setup");
+        return await _userManager.DoAnyUsersExistAsync()
+            ? RedirectToPage("./Login/Index")
+            : RedirectToPage("./Setup/Index");
     }
 }

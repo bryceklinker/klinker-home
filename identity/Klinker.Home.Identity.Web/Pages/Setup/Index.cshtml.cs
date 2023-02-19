@@ -31,13 +31,13 @@ public class Setup : PageModel
 
     public async Task<IActionResult> OnGetAsync()
     {
-        return await _userManager.DoAnyUsersExistAsync() ? RedirectToPage("./Login") : Page();
+        return await _userManager.DoAnyUsersExistAsync() ? RedirectToPage("../Login/Index") : Page();
     }
 
     public async Task<IActionResult> OnPostAsync()
     {
         var user = ViewModel.ToUser();
         var result = await _userManager.CreateAsync(user, ViewModel.Password);
-        return result.Succeeded ? RedirectToPage("./Login") : Page();
+        return result.Succeeded ? RedirectToPage("../Login/Index") : Page();
     }
 }

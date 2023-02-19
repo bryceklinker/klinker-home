@@ -1,3 +1,4 @@
+using Klinker.Home.Identity.Web.Common;
 using Klinker.Home.Identity.Web.Common.Storage;
 using Klinker.Home.Identity.Web.Users.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -81,5 +82,22 @@ public class IdentityWebApplicationFixture : PageTest
         await Page.GetByLabel("Username").FillAsync(TestAdminUser.Default.Username);
         await Page.GetByLabel("Password").FillAsync(TestAdminUser.Default.Password);
         await Page.GetByRole(AriaRole.Button).ClickAsync();
+    }
+
+    protected async Task LoginAsAdminUser()
+    {
+        if (!await DoesAdminUserExist())
+            await AddAdminUser();
+
+        await Page.GetByLabel("Username").FillAsync(TestAdminUser.Default.Username);
+        await Page.GetByLabel("Password").FillAsync(TestAdminUser.Default.Password);
+        await Page.GetByRole(AriaRole.Button).ClickAsync();
+        await Page.WaitForURLAsync("/dashboard");
+    }
+
+    protected async Task<bool> DoesAdminUserExist()
+    {
+        var userManager = App.GetService<UserManager<KlinkerUser>>();
+        return await userManager.DoAnyUsersExistAsync();
     }
 }

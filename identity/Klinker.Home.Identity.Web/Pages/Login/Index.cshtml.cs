@@ -32,7 +32,7 @@ public class Login : PageModel
         var result = await _signInManager.PasswordSignInAsync(ViewModel.Username, ViewModel.Password, true, true);
 
         if (result.Succeeded)
-            return RedirectToPage("./Dashboard");
+            return RedirectToPage("../Dashboard/Index");
 
         return Page();
     }

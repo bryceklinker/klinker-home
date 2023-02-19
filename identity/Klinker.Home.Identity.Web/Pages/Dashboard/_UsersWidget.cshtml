@@ -1,0 +1,19 @@
+@model Klinker.Home.Identity.Web.Pages.Dashboard.UsersWidgetViewModel
+
+<div>
+    <h3 aria-label="users widget">
+        Users
+    </h3>
+    
+    <h4>
+        Total Users: @Model.TotalUserCount
+    </h4>
+
+    <h4>
+        Confirmed Users: @Model.VerifiedUserCount
+    </h4>
+
+    <h4>
+        Unverified Users: @Model.UnverifiedUserCount
+    </h4>
+</div>
