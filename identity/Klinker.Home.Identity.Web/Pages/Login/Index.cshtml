@@ -1,12 +1,13 @@
 @page
 @model Klinker.Home.Identity.Web.Pages.Login
+<div class="flex justify-center grow flex-col">
+    <form method="post" class="flex align-center gap-2 flex-col drop-shadow-2xl p-2 bg-white rounded border-solid border-slate-800">
+        <label asp-for="ViewModel.Username">Username</label>
+        <input type="text" asp-for="ViewModel.Username" required="required"/>
 
-<form method="post">
-    <label asp-for="ViewModel.Username">Username</label>
-    <input type="text" asp-for="ViewModel.Username" required="required"/>
-    
-    <label asp-for="ViewModel.Password">Password</label>
-    <input type="password" asp-for="ViewModel.Password" required="required"/>
-    
-    <button type="submit">Login</button>
-</form>
+        <label asp-for="ViewModel.Password">Password</label>
+        <input type="password" asp-for="ViewModel.Password" required="required"/>
+
+        <button type="submit" class="text-white p-2 rounded bg-violet-500 hover:bg-violet-900">Login</button>
+    </form>
+</div>

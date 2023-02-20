@@ -28,12 +28,10 @@ public class Dashboard : PageModel
 
     private async Task<UsersWidgetViewModel> CreateUsersWidgetViewModel()
     {
-        var totalUserCount = _userManager.Users.CountAsync();
-        var verifiedUserCount = _userManager.Users.CountAsync(u => u.EmailConfirmed);
-        var unverifiedUserCount = _userManager.Users.CountAsync(u => !u.EmailConfirmed);
+        var totalUserCount = await _userManager.Users.CountAsync().ConfigureAwait(false);
+        var verifiedUserCount = await _userManager.Users.CountAsync(u => u.EmailConfirmed).ConfigureAwait(false);
+        var unverifiedUserCount = await _userManager.Users.CountAsync(u => !u.EmailConfirmed).ConfigureAwait(false);
 
-        var results = await Task.WhenAll(totalUserCount, verifiedUserCount, unverifiedUserCount).ConfigureAwait(false);
-
-        return new UsersWidgetViewModel(results[0], results[1], results[2]);
+        return new UsersWidgetViewModel(totalUserCount, verifiedUserCount, unverifiedUserCount);
     }
 }
