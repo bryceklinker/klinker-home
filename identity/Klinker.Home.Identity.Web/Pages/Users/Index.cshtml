@@ -1,0 +1,17 @@
+@page
+@model Klinker.Home.Identity.Web.Pages.Users.Index
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<ul>
+   @foreach (var user in Model.ViewModel.Users)
+   {
+       <li aria-label="user">
+           @user.UserName
+           <button aria-label="edit">Edit</button>
+           <button aria-label="delete">Delete</button>
+       </li>
+   }
+</ul>
